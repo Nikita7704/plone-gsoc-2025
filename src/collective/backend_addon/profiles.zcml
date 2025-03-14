@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.backend_addon"
+    >
+
+  <genericsetup:registerProfile
+      name="default"
+      title="backend-addon: Install"
+      description="Package to configure a new backend-addon site"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="backend-addon: Uninstall"
+      description="Uninstall backend-addon setup."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      />
+
+  <!-- Hide Uninstall Profile-->
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.backend_addon"
+      />
+
+
+  <include package=".upgrades" />
+
+</configure>
